@@ -6,7 +6,11 @@ public class UserInput {
 	
 	public Command getCommand() {
 		char n = scanner.next().charAt(0);
-		switch(n) {
+		return getCommand(n);
+	}
+
+	public Command getCommand(char keyChar) {
+		switch(keyChar) {
 		case 'a':
 			return Command.LEFT;
 		case 'd':
@@ -19,7 +23,7 @@ public class UserInput {
 			return Command.QUIT;
 		default:
 			return Command.NOTHING;
-		}		
+		}	
 	}
 
 }

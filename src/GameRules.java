@@ -18,7 +18,6 @@ public class GameRules {
 
 	public void endGame() throws IOException {
 		System.out.println("GAME OVER!!!!");
-		System.in.read();
 		System.exit(0);
 	}
 	
