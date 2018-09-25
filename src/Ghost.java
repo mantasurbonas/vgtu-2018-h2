@@ -1,4 +1,5 @@
 
+// nera logikos. idet pvz dijkstra?
 public class Ghost {
 	int ghostX = 7;
 	int ghostY = 7;

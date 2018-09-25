@@ -6,5 +6,5 @@ public enum Command {
 	UP,
 	DOWN,
 	QUIT,
-	NOTHING	
+	NOTHING	//Nereikalinga kadangi programa progresuoja tik kazka paspaudus
 }
