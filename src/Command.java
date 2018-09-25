@@ -1,9 +1,9 @@
 
 public enum Command {
-    LEFT,
-    RIGHT,
-    UP,
-    DOWN,
-    QUIT,
-    NOTHING
+	LEFT,
+	RIGHT,
+	UP,
+	DOWN,
+	QUIT,
+	NOTHING
 }
