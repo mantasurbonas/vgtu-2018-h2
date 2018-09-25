@@ -1,47 +1,39 @@
 
-public class Ghost {
-	int ghostX = 7;
-	int ghostY = 7;
-	int ghostDx = 0;
-	int ghostDy = 1;
+public class Ghost extends GameEntity {
+    private int xDirection;
+    private int yDirection;
+    private final Map map;
 
-	public Ghost(int ghostX, int ghostY, int ghostDx, int ghostDy) {
-		this.ghostX = ghostX;
-		this.ghostY = ghostY;
-		this.ghostDx = ghostDx;
-		this.ghostDy = ghostDy;
-	}
+    public Ghost(Map map, int x, int y, Direction direction) {
+        super(x, y);
 
-	public int getGhostX() {
-		return ghostX;
-	}
+        this.map = map;
+        setDirection(direction);
+    }
 
-	public void setGhostX(int ghostX) {
-		this.ghostX = ghostX;
-	}
+    public void move() {
+        int nextX = getX() + xDirection;
+        int nextY = getY() + yDirection;
 
-	public int getGhostY() {
-		return ghostY;
-	}
+        if (map.isWall(nextX, nextY)) {
+            changeDirection();
+        } else {
+            setX(nextX);
+            setY(nextY);
+        }
+    }
 
-	public void setGhostY(int ghostY) {
-		this.ghostY = ghostY;
-	}
+    private void setDirection(Direction direction) {
+        switch (direction) {
+            case RIGHT: xDirection = 1; yDirection = 0; break;
+            case LEFT: xDirection = -1; yDirection = 0; break;
+            case UP: xDirection = 0; yDirection = -1; break;
+            case DOWN: xDirection = 0; yDirection = 1; break;
+        }
+    }
 
-	public int getGhostDx() {
-		return ghostDx;
-	}
-
-	public void setGhostDx(int ghostDx) {
-		this.ghostDx = ghostDx;
-	}
-
-	public int getGhostDy() {
-		return ghostDy;
-	}
-
-	public void setGhostDy(int ghostDy) {
-		this.ghostDy = ghostDy;
-	}
-
+    private void changeDirection() {
+        xDirection *= -1;
+        yDirection *= -1;
+    }
 }
