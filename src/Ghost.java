@@ -33,7 +33,7 @@ public class Ghost {
 	}
 
 	public void setGhostDx(int ghostDx) {
-		this.ghostDx = ghostDx;
+		this.ghostDx *= ghostDx;
 	}
 
 	public int getGhostDy() {
@@ -41,7 +41,7 @@ public class Ghost {
 	}
 
 	public void setGhostDy(int ghostDy) {
-		this.ghostDy = ghostDy;
+		this.ghostDy *= ghostDy;
 	}
 
 }

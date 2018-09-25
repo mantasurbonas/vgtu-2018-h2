@@ -22,17 +22,16 @@ public class GameRules {
 	}
 	
 	public void moveGhost() {
-		int nextX = ghost.ghostX + ghost.ghostDx;
-		int nextY = ghost.ghostY + ghost.ghostDy;
+		int nextX = ghost.getGhostX() + ghost.getGhostDx();
+		int nextY = ghost.getGhostY() + ghost.getGhostDy();
 		
 		if (map.isWall(nextX, nextY)) {
-			ghost.ghostDx *= -1;
-			ghost.ghostDy *= -1;
-			
+			ghost.setGhostDx(-1);
+			ghost.setGhostDy(-1);
 		}else {
-			ghost.ghostX = nextX;
-			ghost.ghostY = nextY;
-		}				
+			ghost.setGhostX(nextX);
+			ghost.setGhostY(nextY);
+		}
 	}
 
 	public void processCommand(Command command) throws Exception{
