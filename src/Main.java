@@ -2,13 +2,13 @@ public class Main {
 
 	public static void main (String args[]) throws Exception{
 		
-		Map map = new Map();
+		MazeMap mazeMap = new MazeMap();
 		Ghost ghost = new Ghost(7,7,-1,0);
 		Pacman pacman = new Pacman(5, 5);
 		
-		GameRenderer renderer = new GameRenderer(pacman, ghost, map);
+		GameRenderer renderer = new GameRenderer(pacman, ghost, mazeMap);
 		
-		GameRules gameRules = new GameRules(pacman, ghost, map);
+		GameRules gameRules = new GameRules(pacman, ghost, mazeMap);
 		
 		UserInput userInput = new UserInput();
 		

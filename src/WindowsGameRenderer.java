@@ -9,13 +9,13 @@ public class WindowsGameRenderer {
 	private BufferedImage pacmanImg;
 	private BufferedImage ghostImg;
 	private BufferedImage wallImg;
-	private Map map;
+	private MazeMap mazeMap;
 	private Pacman pacman;
 	private Ghost ghost;
 
 	
-	public WindowsGameRenderer(Map map, Pacman pacman, Ghost ghost) throws Exception {
-		this.map = map;
+	public WindowsGameRenderer(MazeMap mazeMap, Pacman pacman, Ghost ghost) throws Exception {
+		this.mazeMap = mazeMap;
 		this.pacman = pacman;
 		this.ghost = ghost;
 		
@@ -24,18 +24,10 @@ public class WindowsGameRenderer {
 		wallImg = ImageIO.read(new FileInputStream("wall.png"));
 	}
 
+//	maziau resursu naudojantis renderinimas
 	void render(Graphics g) {
-		for (int y=0; y<map.getHeight(); y++) {
-			for (int x=0; x<map.getWidth(); x++) {
-				if (pacman.getPacmanX() == x && pacman.getPacmanY() == y)
-					g.drawImage(pacmanImg, 50+x*20, 50+y*20, 20, 20, null);
-				else
-				if (ghost.getGhostX() == x && ghost.getGhostY() == y)
-					g.drawImage(ghostImg, 50+x*20, 50+y*20, 20, 20, null);
-				else
-				if (map.isWall(x, y))
-					g.drawImage(wallImg, 50+x*20, 50+y*20, 20, 20, null);
-			}
-		}
+		g.drawImage(ghostImg, 50+ghost.getGhostX()*20, 50+ghost.getGhostY()*20, 20, 20, null);
+		g.drawImage(pacmanImg, 50+pacman.getPacmanX()*20, 50+pacman.getPacmanY()*20, 20, 20, null);
+		for(Wall wall : mazeMap.walls) g.drawImage(wallImg, 50+wall.getX()*20, 50+wall.getY()*20, 20, 20, null);
 	}
 }

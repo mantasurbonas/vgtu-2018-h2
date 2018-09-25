@@ -2,14 +2,14 @@ import java.io.IOException;
 
 public class GameRules {
 
-	private Map map;
+	private MazeMap mazeMap;
 	private Ghost ghost;
 	private Pacman pacman;
 
-	public GameRules(Pacman pacman, Ghost ghost, Map map) {
+	public GameRules(Pacman pacman, Ghost ghost, MazeMap mazeMap) {
 		this.pacman = pacman;
 		this.ghost = ghost;
-		this.map = map;
+		this.mazeMap = mazeMap;
 	}
 
 	public boolean isGameOver() {
@@ -25,7 +25,7 @@ public class GameRules {
 		int nextX = ghost.ghostX + ghost.ghostDx;
 		int nextY = ghost.ghostY + ghost.ghostDy;
 		
-		if (map.isWall(nextX, nextY)) {
+		if (mazeMap.isWall(nextX, nextY)) {
 			ghost.ghostDx *= -1;
 			ghost.ghostDy *= -1;
 			
@@ -64,7 +64,7 @@ public class GameRules {
 		int nextX = pacman.pacmanX + dx;
 		int nextY = pacman.pacmanY + dy;
 		
-		if (map.isWall(nextX, nextY))
+		if (mazeMap.isWall(nextX, nextY))
 			return;
 		
 		pacman.setPacmanX(nextX);
