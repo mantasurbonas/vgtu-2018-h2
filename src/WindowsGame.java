@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 
 public class WindowsGame extends JFrame implements KeyListener{
 
-
 	Map map = new Map();
 	Ghost ghost = new Ghost(7,7,-1,0);
 	Pacman pacman = new Pacman(5, 5);
@@ -15,9 +14,12 @@ public class WindowsGame extends JFrame implements KeyListener{
 	UserInput userInput = new UserInput();
 	GameRules gameRules = new GameRules(pacman, ghost, map);
 	WindowsGameRenderer gameRenderer = new WindowsGameRenderer(map, pacman, ghost);
+
+	public static final int WindowWidth = 1200;
+	public static final int WindowHeight = 600;
 	
 	public WindowsGame() throws Exception {
-		super.setPreferredSize(new Dimension(1200, 600));
+		super.setPreferredSize(new Dimension(WindowWidth, WindowHeight));
 		super.pack();
 		super.setVisible(true);
 		
