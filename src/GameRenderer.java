@@ -1,22 +1,22 @@
 
 public class GameRenderer {
 
-	private Map map;
-	private Ghost ghost;
-	private Pacman pacman;
+	private final Map map;
+	private final Ghost ghost;
+	private final Pacman pacman;
 
 	public GameRenderer(Pacman pacman, Ghost ghost, Map map) {
 		this.pacman = pacman;
 		this.ghost = ghost;
 		this.map = map;
 	}
-	
+
 	public void render() {
 		for (int y = 0; y < map.getHeight(); y++) {
 			for (int x = 0; x < map.getWidth(); x++) {
-				if (x == pacman.pacmanX && y == pacman.pacmanY) {
+				if (x == pacman.getX() && y == pacman.getY()) {
 					System.out.print("C");
-				} else if (x == ghost.ghostX && y == ghost.ghostY) {
+				} else if (x == ghost.getX() && y == ghost.getY()) {
 					System.out.print("E");
 				} else if (map.isWall(x, y)) {
 					System.out.print("#");

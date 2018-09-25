@@ -1,28 +1,39 @@
 
-public class Pacman {
-	int pacmanX = 5;
-	int pacmanY = 5;
+public class Pacman extends GameEntity {
+	private final Map map;
 
-	public Pacman(int pacmanX, int pacmanY) {
-		super();
-		this.pacmanX = pacmanX;
-		this.pacmanY = pacmanY;
+	public Pacman(Map map, int x, int y) {
+		super(x, y);
+
+		this.map = map;
 	}
 
-	public int getPacmanX() {
-		return pacmanX;
-	}
+	public void move(Command command) {
+		int dx = 0;
+		int dy = 0;
 
-	public void setPacmanX(int pacmanX) {
-		this.pacmanX = pacmanX;
-	}
+		switch (command) {
+			case UP:
+				dy = -1;
+				break;
+			case DOWN:
+				dy = 1;
+				break;
+			case LEFT:
+				dx = -1;
+				break;
+			case RIGHT:
+				dx = 1;
+				break;
+		}
 
-	public int getPacmanY() {
-		return pacmanY;
-	}
+		int nextX = getX() + dx;
+		int nextY = getY() + dy;
 
-	public void setPacmanY(int pacmanY) {
-		this.pacmanY = pacmanY;
-	}
+		if (map.isWall(nextX, nextY))
+			return;
 
+		setX(nextX);
+		setY(nextY);
+	}
 }

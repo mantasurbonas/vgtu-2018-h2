@@ -5,29 +5,28 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
-public class WindowsGame extends JFrame implements KeyListener{
+public class WindowsGame extends JFrame implements KeyListener {
 
+	private final Map map = new Map();
+	private final Ghost ghost = new Ghost(map, 7, 7, Direction.LEFT);
+	private final Pacman pacman = new Pacman(map, 5, 5);
 
-	Map map = new Map();
-	Ghost ghost = new Ghost(7,7,-1,0);
-	Pacman pacman = new Pacman(5, 5);
-	
-	UserInput userInput = new UserInput();
-	GameRules gameRules = new GameRules(pacman, ghost, map);
-	WindowsGameRenderer gameRenderer = new WindowsGameRenderer(map, pacman, ghost);
-	
+	private final UserInput userInput = new UserInput();
+	private final GameRules gameRules = new GameRules(pacman, ghost);
+	private final WindowsGameRenderer gameRenderer = new WindowsGameRenderer(map, pacman, ghost);
+
 	public WindowsGame() throws Exception {
 		super.setPreferredSize(new Dimension(1200, 600));
 		super.pack();
 		super.setVisible(true);
-		
+
 		super.addKeyListener(this);
 	}
-	
+
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		
+
 		gameRenderer.render(g);
 	}
 
@@ -44,14 +43,12 @@ public class WindowsGame extends JFrame implements KeyListener{
 		try {
 			if (gameRules.isGameOver())
 				gameRules.endGame();
-			
+
 			Command command = userInput.getCommand(e.getKeyChar());
 			gameRules.processCommand(command);
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		} catch (SecurityException ex) {
+			ex.printStackTrace();
 		}
-		
-		gameRules.moveGhost();
 
 		this.repaint();
 	}

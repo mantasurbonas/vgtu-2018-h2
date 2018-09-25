@@ -4,7 +4,7 @@ public class WindowsMain {
 
 	public static void main(String args[]) throws Exception {
 		SwingUtilities.invokeAndWait(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				try {
