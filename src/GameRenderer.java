@@ -14,17 +14,21 @@ public class GameRenderer {
 	public void render() {
 		for (int y = 0; y < map.getHeight(); y++) {
 			for (int x = 0; x < map.getWidth(); x++) {
-				if (x == pacman.pacmanX && y == pacman.pacmanY) {
-					System.out.print("C");
-				} else if (x == ghost.ghostX && y == ghost.ghostY) {
-					System.out.print("E");
-				} else if (map.isWall(x, y)) {
-					System.out.print("#");
-				} else {
-					System.out.print(" ");
-				}
+				printCell(x, y, pacman, map);
 			}
 			System.out.println();
+		}
+	}
+
+	public void printCell(int x, int y, Pacman pacman, Map map) {
+		if (x == pacman.pacmanX && y == pacman.pacmanY) {
+			System.out.print("C");
+		} else if (x == ghost.ghostX && y == ghost.ghostY) {
+			System.out.print("E");
+		} else if (map.isWall(x, y)) {
+			System.out.print("#");
+		} else {
+			System.out.print(" ");
 		}
 	}
 }

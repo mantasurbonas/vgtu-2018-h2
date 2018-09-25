@@ -13,26 +13,25 @@ public class GameRules {
 	}
 
 	public boolean isGameOver() {
-		return (pacman.pacmanX == ghost.ghostX && pacman.pacmanY == ghost.ghostY);
+		return (pacman.getPacmanX() == ghost.getGhostX() && pacman.getPacmanY() == ghost.getGhostY());
 	}
 
-	public void endGame() throws IOException {
+	public void endGame() throws SecurityException {
 		System.out.println("GAME OVER!!!!");
 		System.exit(0);
 	}
 	
 	public void moveGhost() {
-		int nextX = ghost.ghostX + ghost.ghostDx;
-		int nextY = ghost.ghostY + ghost.ghostDy;
+		int nextX = ghost.getGhostX() + ghost.getGhostDx();
+		int nextY = ghost.getGhostY() + ghost.getGhostDy();
 		
 		if (map.isWall(nextX, nextY)) {
-			ghost.ghostDx *= -1;
-			ghost.ghostDy *= -1;
-			
+			ghost.setGhostDx(-1);
+			ghost.setGhostDy(-1);
 		}else {
-			ghost.ghostX = nextX;
-			ghost.ghostY = nextY;
-		}				
+			ghost.setGhostX(nextX);
+			ghost.setGhostY(nextY);
+		}
 	}
 
 	public void processCommand(Command command) throws Exception{
@@ -61,8 +60,8 @@ public class GameRules {
 	}
 
 	private void tryMovePacman(int dx, int dy) {
-		int nextX = pacman.pacmanX + dx;
-		int nextY = pacman.pacmanY + dy;
+		int nextX = pacman.getPacmanX() + dx;
+		int nextY = pacman.getPacmanY() + dy;
 		
 		if (map.isWall(nextX, nextY))
 			return;

@@ -12,12 +12,9 @@ public class Main {
 		
 		UserInput userInput = new UserInput();
 		
-		while(true) {
+		while(!gameRules.isGameOver()) {
 		
 			renderer.render();
-			
-			if (gameRules.isGameOver())
-				gameRules.endGame();
 			
 			Command command = userInput.getCommand();
 			gameRules.processCommand(command);

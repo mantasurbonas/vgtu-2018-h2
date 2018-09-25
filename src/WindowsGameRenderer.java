@@ -13,6 +13,8 @@ public class WindowsGameRenderer {
 	private Pacman pacman;
 	private Ghost ghost;
 
+	public static final int ImageHeight = 20;
+	public static final int ImageWidth = 20;
 	
 	public WindowsGameRenderer(Map map, Pacman pacman, Ghost ghost) throws Exception {
 		this.map = map;
@@ -27,15 +29,19 @@ public class WindowsGameRenderer {
 	void render(Graphics g) {
 		for (int y=0; y<map.getHeight(); y++) {
 			for (int x=0; x<map.getWidth(); x++) {
-				if (pacman.getPacmanX() == x && pacman.getPacmanY() == y)
-					g.drawImage(pacmanImg, 50+x*20, 50+y*20, 20, 20, null);
-				else
-				if (ghost.getGhostX() == x && ghost.getGhostY() == y)
-					g.drawImage(ghostImg, 50+x*20, 50+y*20, 20, 20, null);
-				else
-				if (map.isWall(x, y))
-					g.drawImage(wallImg, 50+x*20, 50+y*20, 20, 20, null);
+				PrintMapCellImage(g, y, x);
 			}
 		}
+	}
+
+	private void PrintMapCellImage(Graphics g, int y, int x) {
+		if (pacman.getPacmanX() == x && pacman.getPacmanY() == y)
+			g.drawImage(pacmanImg, 50+x*20, 50+y*20, ImageWidth, ImageHeight, null);
+		else
+		if (ghost.getGhostX() == x && ghost.getGhostY() == y)
+			g.drawImage(ghostImg, 50+x*20, 50+y*20, ImageWidth, ImageHeight, null);
+		else
+		if (map.isWall(x, y))
+			g.drawImage(wallImg, 50+x*20, 50+y*20, ImageWidth, ImageHeight, null);
 	}
 }
