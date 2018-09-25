@@ -11,18 +11,14 @@ public class Main {
 
         UserInput userInput = new UserInput();
 
-        boolean isOver = false;
-        while (!isOver) {
+        while (!gameRules.isGameOver()) {
             renderer.render();
 
             Command command = userInput.getCommand();
             gameRules.processCommand(command);
-
-            isOver = gameRules.isGameOver();
         }
 
         gameRules.endGame();
     }
-
 
 }
